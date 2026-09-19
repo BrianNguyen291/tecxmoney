@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f4f1;
+  --surface-2: #ebe9e4;
+  --ink: #14181a;
+  --ink-2: #576165;
+  --ink-3: #8a9296;
+  --line: #e3e1dc;
+  --line-soft: #efedea;
+  --yes: #0b7a4b;
+  --yes-wash: #e3f2ea;
+  --no: #b93a34;
+  --no-wash: #fae7e5;
+  --warm: #b5791a;
+  --warm-wash: #fbf0dc;
+  --ink-on-accent: #ffffff;
+
+  --font: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --r: 16px;
+  --r-lg: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1012;
+    --surface: #171b1d;
+    --surface-2: #222729;
+    --ink: #edefef;
+    --ink-2: #a3acaf;
+    --ink-3: #737d81;
+    --line: #2b3235;
+    --line-soft: #1f2527;
+    --yes: #3fc98a;
+    --yes-wash: #0f2e21;
+    --no: #ff7168;
+    --no-wash: #351a18;
+    --warm: #e3ac5a;
+    --warm-wash: #302512;
+    --ink-on-accent: #04150d;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1012; --surface: #171b1d; --surface-2: #222729;
+  --ink: #edefef; --ink-2: #a3acaf; --ink-3: #737d81;
+  --line: #2b3235; --line-soft: #1f2527;
+  --yes: #3fc98a; --yes-wash: #0f2e21;
+  --no: #ff7168; --no-wash: #351a18;
+  --warm: #e3ac5a; --warm-wash: #302512;
+  --ink-on-accent: #04150d;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+p { margin: 0; }
+button { font: inherit; color: inherit; border: none; background: none; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--yes); outline-offset: 3px; border-radius: 6px; }
+
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
