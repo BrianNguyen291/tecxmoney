@@ -19,11 +19,14 @@
 
 /* ---------- teaching screen ---------- */
 .teach {
-  display: flex; flex-direction: column; gap: 20px; padding: 28px 0 130px;
-  /* A two-block segment left most of the screen empty. Short segments now sit in
-     the middle of the space; long ones simply grow past it and scroll. */
-  min-height: calc(100dvh - 210px);
+  display: flex; flex-direction: column; gap: 20px;
+  /* Centre short segments in the space between the header and the docked button.
+     Clearance for long content is a margin, not padding — padding sits inside the
+     box and drags the centre upward. */
+  min-height: calc(100dvh - 150px);
   justify-content: center;
+  padding: 0;
+  margin: 0 0 112px;
 }
 .teach h1 { font-size: 30px; }
 .teach .hook { font-size: 18px; color: var(--ink-2); font-weight: 500; }
