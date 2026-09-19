@@ -8,7 +8,12 @@ const THRESHOLD = 88
  * buttons are always on screen, and arrow keys work, so the gesture is never
  * the only way through.
  */
-export function SwipeDeck({ cards, onDone }: { cards: SwipeCard[]; onDone: (right: number) => void }) {
+export function SwipeDeck({ cards, onDone, continueLabel = "Keep going" }: {
+  cards: SwipeCard[]
+  onDone: (right: number) => void
+  /** What the button says after the LAST card — the caller knows what follows. */
+  continueLabel?: string
+}) {
   const [i, setI] = useState(0)
   const [dx, setDx] = useState(0)
   const [verdict, setVerdict] = useState<null | { given: boolean; ok: boolean }>(null)
@@ -64,12 +69,14 @@ export function SwipeDeck({ cards, onDone }: { cards: SwipeCard[]; onDone: (righ
 
   return (
     <div className="deck-wrap" onKeyDown={onKeyDown}>
-      <p className="deck-hint">
-        Swipe right for <b style={{ color: "var(--yes)" }}>true</b>, left for{" "}
-        <b style={{ color: "var(--no)" }}>false</b>. Arrow keys work too.
-      </p>
+      {!verdict && (
+        <p className="deck-hint">
+          Swipe right for <b style={{ color: "var(--yes)" }}>true</b>, left for{" "}
+          <b style={{ color: "var(--no)" }}>false</b>. Arrow keys work too.
+        </p>
+      )}
 
-      <div className="deck">
+      <div className={`deck ${verdict ? "gone" : ""}`}>
         {cards[i + 2] && <div className="card under2" aria-hidden="true" />}
         {cards[i + 1] && <div className="card under" aria-hidden="true" />}
         <div
@@ -100,7 +107,7 @@ export function SwipeDeck({ cards, onDone }: { cards: SwipeCard[]; onDone: (righ
             <p>{card.why}</p>
           </div>
           <button className="btn" onClick={next} autoFocus>
-            {i + 1 >= cards.length ? "See score" : "Next card"}
+            {i + 1 >= cards.length ? continueLabel : "Next card"}
           </button>
         </>
       ) : (

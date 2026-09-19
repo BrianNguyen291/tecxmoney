@@ -81,6 +81,11 @@ export function Lesson({ lesson, onBack, onNext, onDone }: {
           <SwipeDeck
             key={`c${seg}`}
             cards={s.cards}
+            continueLabel={
+              s.quiz ? "Next question"
+                : seg + 1 < steps ? "Keep going"
+                  : "See score"
+            }
             onDone={(r) => { setScore((v) => v + r); advance() }}
           />
         )}
