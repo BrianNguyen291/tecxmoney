@@ -28,6 +28,8 @@ export function Lesson({ lesson, onBack, onNext, onDone }: {
   const total = countTests(lesson)
   const s = lesson.segments[seg]
   const steps = lesson.segments.length
+  // What the reader is about to be asked — "card" is our word, not theirs.
+  const tests = (s.cards?.length ?? 0) + (s.quiz ? 1 : 0)
 
   const advance = () => {
     if (mode === "teach") {
@@ -132,9 +134,7 @@ export function Lesson({ lesson, onBack, onNext, onDone }: {
         <div className="dock">
           <div className="dock-in">
             <button className="btn" onClick={advance}>
-              {s.cards?.length
-                ? `Check it — ${s.cards.length} card${s.cards.length > 1 ? "s" : ""}`
-                : s.quiz ? "Check it" : "Continue"}
+              {tests === 0 ? "Continue" : tests === 1 ? "Quick question" : `${tests} quick questions`}
             </button>
           </div>
         </div>

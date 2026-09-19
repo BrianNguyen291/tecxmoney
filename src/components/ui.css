@@ -18,7 +18,13 @@
 .track i { display: block; height: 100%; background: var(--yes); transition: width 0.35s var(--ease); }
 
 /* ---------- teaching screen ---------- */
-.teach { display: flex; flex-direction: column; gap: 20px; padding: 28px 0 130px; }
+.teach {
+  display: flex; flex-direction: column; gap: 20px; padding: 28px 0 130px;
+  /* A two-block segment left most of the screen empty. Short segments now sit in
+     the middle of the space; long ones simply grow past it and scroll. */
+  min-height: calc(100dvh - 210px);
+  justify-content: center;
+}
 .teach h1 { font-size: 30px; }
 .teach .hook { font-size: 18px; color: var(--ink-2); font-weight: 500; }
 .teach h2 { font-size: 19px; margin-top: 10px; }
