@@ -7,8 +7,8 @@ Live: https://briannguyen291.github.io/tecxmoney/
 
 ## Content
 
-Four lessons written from scratch — inflation, compounding both ways, where money
-can live, and how a scam is built. **No book was copied or scraped.** The source
+Nine lessons written from scratch — 54 true/false cards and 27 multiple-choice
+questions. **No book was copied or scraped.** The source
 reading list was used only to scope topics; every word here is original, and the
 worked figures are illustrative.
 

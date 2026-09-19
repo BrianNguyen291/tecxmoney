@@ -3,14 +3,13 @@ import { l1 } from "./l1"
 import { l2 } from "./l2"
 import { l3 } from "./l3"
 import { l4 } from "./l4"
+import { l5 } from "./l5"
+import { l6 } from "./l6"
+import { l7 } from "./l7"
+import { l8 } from "./l8"
+import { l9 } from "./l9"
 
-export const LESSONS: Lesson[] = [l1, l2, l3, l4]
+export const LESSONS: Lesson[] = [l1, l2, l3, l4, l5, l6, l7, l8, l9]
 
-/** Drafted but not written — shown on the home screen so scope is visible. */
-export const PLANNED = [
-  "Budgeting on an income that changes every week",
-  "What a SACCO actually does with your money",
-  "Currency: why your savings can shrink overnight",
-  "Insurance as a financial tool, not a grudge purchase",
-  "Borrowing to build vs borrowing to consume",
-]
+/** Scoped but not written. Shown on the home screen so the gap is visible. */
+export const PLANNED: string[] = []

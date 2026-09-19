@@ -63,16 +63,20 @@ export default function App() {
           )
         })}
 
-        <p style={{ marginTop: 34, fontSize: 12, fontWeight: 700, letterSpacing: "0.09em",
-          textTransform: "uppercase", color: "var(--ink-3)" }}>
-          Drafted next
-        </p>
-        {PLANNED.map((t) => (
-          <div className="lrow" key={t} style={{ opacity: 0.45 }}>
-            <span className="lrow-n" aria-hidden="true">—</span>
-            <span className="lrow-b"><span className="lrow-t">{t}</span></span>
-          </div>
-        ))}
+        {PLANNED.length > 0 && (
+          <>
+            <p style={{ marginTop: 34, fontSize: 12, fontWeight: 700, letterSpacing: "0.09em",
+              textTransform: "uppercase", color: "var(--ink-3)" }}>
+              Drafted next
+            </p>
+            {PLANNED.map((t) => (
+              <div className="lrow" key={t} style={{ opacity: 0.45 }}>
+                <span className="lrow-n" aria-hidden="true">—</span>
+                <span className="lrow-b"><span className="lrow-t">{t}</span></span>
+              </div>
+            ))}
+          </>
+        )}
 
         <p style={{ marginTop: 28, fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6 }}>
           {done.length} of {LESSONS.length} complete. Figures are illustrative and written for
