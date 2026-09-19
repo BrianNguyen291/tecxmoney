@@ -21,13 +21,25 @@ export type Quiz = {
   why: string[]
 }
 
+/**
+ * One idea, then the test for that idea. Keep `teach` to two or three blocks —
+ * a segment is one screen, and anything longer gets skipped.
+ */
+export type Segment = {
+  teach: Block[]
+  /** Tested immediately, on exactly what was just taught. */
+  cards?: SwipeCard[]
+  quiz?: Quiz
+}
+
 export type Lesson = {
   id: string
   title: string
   hook: string
   minutes: number
-  teach: Block[]
-  swipe: SwipeCard[]
-  quiz: Quiz[]
+  segments: Segment[]
   takeaway: string
 }
+
+export const countTests = (l: Lesson) =>
+  l.segments.reduce((n, s) => n + (s.cards?.length ?? 0) + (s.quiz ? 1 : 0), 0)

@@ -5,54 +5,21 @@ export const l9: Lesson = {
   title: "Borrowing to build vs borrowing to consume",
   hook: "Debt is not good or bad. It is one of two completely different things.",
   minutes: 4,
-  teach: [
-    { kind: "p", text: "Debt gets discussed as a moral question — disciplined people avoid it, weak people fall into it. That framing is useless, because it cannot tell you whether a specific loan is a good idea. There is a better split." },
-    { kind: "h", text: "Two kinds of loan" },
-    { kind: "p", text: "**Borrowing to build** buys something that will still be producing income after the loan is repaid. Stock for a shop, a machine, a second-hand motorbike you will earn with, training that raises what you can charge." },
-    { kind: "p", text: "**Borrowing to consume** buys something that will be used up or worth less by the time you finish paying. A phone upgrade, a wedding, a holiday, a television." },
-    { kind: "callout", text: "Neither is forbidden. But only one of them helps you repay it. Consumption debt has to be repaid out of income you already had — so it must be small and short, or it compounds against you.", tone: "warm" },
-    { kind: "h", text: "The number that decides it" },
-    { kind: "p", text: "For a building loan, compare the **return on the thing** with the **cost of the loan**. Stock you can turn over at 30% profit, funded at 18%, leaves you 12% ahead. The same stock funded at a loan-app rate of 141% destroys you, even though the business idea was sound." },
-    { kind: "compare", title: "Buying 50,000 of stock you can sell at a 30% margin", heads: ["Cost of loan", "You keep"], rows: [
-      { label: "SACCO, 18% a year", a: "9,000", b: "+6,000" },
-      { label: "Bank, 25% a year", a: "12,500", b: "+2,500" },
-      { label: "Loan app, ~141% a year", a: "70,500", b: "−55,500" },
-    ] },
-    { kind: "p", text: "The business was profitable in all three rows. Only the financing changed. **A good idea funded badly is still a loss.**" },
-    { kind: "h", text: "The honest exception" },
-    { kind: "p", text: "Sometimes you borrow for consumption because the alternative is worse — medicine, a funeral, school fees on a deadline. That is not a failure of discipline. The rule is simply to **know which kind you are taking**, keep it as short as possible, and go back to building afterwards." },
-    { kind: "stat", value: "After the last payment", label: "Ask: when the loan is finished, will this thing still be putting money in my hand? That answer sorts every loan you will ever be offered.", tone: "yes" },
-  ],
-  swipe: [
-    { claim: "All debt is bad and should be avoided.", answer: false,
-      why: "Debt that buys something producing more than it costs makes you better off. The useful question is which kind it is, not whether to feel guilty." },
-    { claim: "A profitable business idea is still a loss if the loan rate is higher than the margin.", answer: true,
-      why: "The financing can exceed the profit. A 30% margin funded at 141% loses money on every cycle." },
-    { claim: "Borrowing for a phone upgrade is building, because you use it for work.", answer: false,
-      why: "The test is whether it produces income after the loan ends. Unless the phone measurably raises what you earn, it is consumption with a justification attached." },
-    { claim: "Borrowing for medicine or school fees on a deadline is always a financial mistake.", answer: false,
-      why: "Sometimes the alternative is worse. It is still consumption debt, so keep it short and small — but it is not a failure of discipline." },
-    { claim: "The key question is whether the thing will still pay you after the last repayment.", answer: true,
-      why: "That single question separates building from consuming, and it works on every loan you will ever be offered." },
-    { claim: "If a lender approves you, the loan must be affordable.", answer: false,
-      why: "Approval measures their risk, not your benefit. Short-term lenders profit most from borrowers who roll over repeatedly." },
-  ],
-  quiz: [
-    { q: "You can buy stock at 40,000 and sell it for 52,000 within a month. Which financing makes sense?",
-      options: [
-        "A loan app at 7.5% for 30 days",
-        "A SACCO loan at 20% a year",
-        "Neither, the margin is too thin",
-        "Both work equally",
+  segments: [
+    {
+      teach: [
+        { kind: "p", text: "Debt gets discussed as a moral question — disciplined people avoid it, weak people fall into it. That framing is useless, because it cannot tell you whether a specific loan is a good idea. There is a better split." },
+        { kind: "h", text: "Two kinds of loan" },
+        { kind: "p", text: "**Borrowing to build** buys something that will still be producing income after the loan is repaid. Stock for a shop, a machine, a second-hand motorbike you will earn with, training that raises what you can charge." },
+        { kind: "p", text: "**Borrowing to consume** buys something that will be used up or worth less by the time you finish paying. A phone upgrade, a wedding, a holiday, a television." },
       ],
-      correct: 1,
-      why: [
-        "7.5% of 40,000 is 3,000 for the month, against 12,000 profit — it works once, but rolling it over compounds to about 141% a year and eats the business.",
-        "Correct. 20% a year on a one-month loan is roughly 667 — negligible against 12,000 profit. Cheap money against a solid margin.",
-        "A 30% margin is healthy. The question is only what the money costs.",
-        "The annualised cost differs by roughly seven times. They are not equivalent.",
-      ] },
-    { q: "Which of these is genuinely 'borrowing to build'?",
+      cards: [
+        { claim: "All debt is bad and should be avoided.", answer: false,
+      why: "Debt that buys something producing more than it costs makes you better off. The useful question is which kind it is, not whether to feel guilty." },
+        { claim: "Borrowing for a phone upgrade is building, because you use it for work.", answer: false,
+      why: "The test is whether it produces income after the loan ends. Unless the phone measurably raises what you earn, it is consumption with a justification attached." },
+      ],
+      quiz: { q: "Which of these is genuinely 'borrowing to build'?",
       options: [
         "A television on instalments",
         "A wedding",
@@ -66,7 +33,59 @@ export const l9: Lesson = {
         "Correct. It keeps earning long after the final repayment — the loan buys a machine that pays for itself and then keeps paying.",
         "Consumption. Enjoy it, but pay for it out of savings rather than debt.",
       ] },
-    { q: "What does loan approval actually tell you?",
+    },
+    {
+      teach: [
+        { kind: "callout", text: "Neither is forbidden. But only one of them helps you repay it. Consumption debt has to be repaid out of income you already had — so it must be small and short, or it compounds against you.", tone: "warm" },
+      ],
+      cards: [
+        { claim: "Borrowing for medicine or school fees on a deadline is always a financial mistake.", answer: false,
+      why: "Sometimes the alternative is worse. It is still consumption debt, so keep it short and small — but it is not a failure of discipline." },
+      ],
+    },
+    {
+      teach: [
+        { kind: "h", text: "The number that decides it" },
+        { kind: "p", text: "For a building loan, compare the **return on the thing** with the **cost of the loan**. Stock you can turn over at 30% profit, funded at 18%, leaves you 12% ahead. The same stock funded at a loan-app rate of 141% destroys you, even though the business idea was sound." },
+        { kind: "compare", title: "Buying 50,000 of stock you can sell at a 30% margin", heads: ["Cost of loan", "You keep"], rows: [
+      { label: "SACCO, 18% a year", a: "9,000", b: "+6,000" },
+      { label: "Bank, 25% a year", a: "12,500", b: "+2,500" },
+      { label: "Loan app, ~141% a year", a: "70,500", b: "−55,500" },
+    ] },
+        { kind: "p", text: "The business was profitable in all three rows. Only the financing changed. **A good idea funded badly is still a loss.**" },
+      ],
+      cards: [
+        { claim: "A profitable business idea is still a loss if the loan rate is higher than the margin.", answer: true,
+      why: "The financing can exceed the profit. A 30% margin funded at 141% loses money on every cycle." },
+      ],
+      quiz: { q: "You can buy stock at 40,000 and sell it for 52,000 within a month. Which financing makes sense?",
+      options: [
+        "A loan app at 7.5% for 30 days",
+        "A SACCO loan at 20% a year",
+        "Neither, the margin is too thin",
+        "Both work equally",
+      ],
+      correct: 1,
+      why: [
+        "7.5% of 40,000 is 3,000 for the month, against 12,000 profit — it works once, but rolling it over compounds to about 141% a year and eats the business.",
+        "Correct. 20% a year on a one-month loan is roughly 667 — negligible against 12,000 profit. Cheap money against a solid margin.",
+        "A 30% margin is healthy. The question is only what the money costs.",
+        "The annualised cost differs by roughly seven times. They are not equivalent.",
+      ] },
+    },
+    {
+      teach: [
+        { kind: "h", text: "The honest exception" },
+        { kind: "p", text: "Sometimes you borrow for consumption because the alternative is worse — medicine, a funeral, school fees on a deadline. That is not a failure of discipline. The rule is simply to **know which kind you are taking**, keep it as short as possible, and go back to building afterwards." },
+        { kind: "stat", value: "After the last payment", label: "Ask: when the loan is finished, will this thing still be putting money in my hand? That answer sorts every loan you will ever be offered.", tone: "yes" },
+      ],
+      cards: [
+        { claim: "The key question is whether the thing will still pay you after the last repayment.", answer: true,
+      why: "That single question separates building from consuming, and it works on every loan you will ever be offered." },
+        { claim: "If a lender approves you, the loan must be affordable.", answer: false,
+      why: "Approval measures their risk, not your benefit. Short-term lenders profit most from borrowers who roll over repeatedly." },
+      ],
+      quiz: { q: "What does loan approval actually tell you?",
       options: [
         "That you can afford it",
         "That the lender expects to get their money back — from you, one way or another",
@@ -80,6 +99,7 @@ export const l9: Lesson = {
         "Approval says nothing about price. Triple-digit lenders approve people constantly.",
         "No lender assesses whether what you are buying is a good idea.",
       ] },
+    },
   ],
   takeaway: "Ask whether it will still be paying you after the last repayment — and remember a good idea funded at 141% is still a loss.",
 }

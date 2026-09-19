@@ -1,50 +1,53 @@
-import { useMemo, useState } from "react"
+import { useState } from "react"
 import type { Lesson as L } from "../content/types"
+import { countTests } from "../content/types"
 import { Teach } from "./Teach"
 import { SwipeDeck } from "./SwipeDeck"
 import { QuizCard } from "./Quiz"
 import "./ui.css"
 
-type Phase = "teach" | "swipe" | "quiz" | "done"
+type Mode = "teach" | "cards" | "quiz"
 
+/**
+ * Teach a little, test it, repeat. A whole lesson on one page gets skimmed and
+ * then the questions land on someone who recognises the words but has not
+ * understood them, so each idea is tested the moment it is taught.
+ */
 export function Lesson({ lesson, onBack, onNext, onDone }: {
   lesson: L
   onBack: () => void
   onNext?: () => void
   onDone: () => void
 }) {
-  const [phase, setPhase] = useState<Phase>("teach")
-  const [swipeScore, setSwipeScore] = useState(0)
-  const [qi, setQi] = useState(0)
-  const [quizScore, setQuizScore] = useState(0)
+  const [seg, setSeg] = useState(0)
+  const [mode, setMode] = useState<Mode>("teach")
+  const [score, setScore] = useState(0)
   const [answered, setAnswered] = useState(false)
+  const [finished, setFinished] = useState(false)
 
-  const total = lesson.swipe.length + lesson.quiz.length
-  const progress = useMemo(() => {
-    if (phase === "teach") return 0
-    if (phase === "swipe") return 0.15
-    if (phase === "quiz") return 0.15 + 0.85 * ((lesson.swipe.length + qi) / total)
-    return 1
-  }, [phase, qi, lesson.swipe.length, total])
+  const total = countTests(lesson)
+  const s = lesson.segments[seg]
+  const steps = lesson.segments.length
 
-  const label =
-    phase === "teach" ? "Learn"
-      : phase === "swipe" ? "True or false"
-        : phase === "quiz" ? `Question ${qi + 1} of ${lesson.quiz.length}`
-          : "Result"
-
-  const nextQuestion = () => {
-    if (qi + 1 >= lesson.quiz.length) {
-      setPhase("done")
-      onDone()
-    } else {
-      setQi(qi + 1)
-      setAnswered(false)
+  const advance = () => {
+    if (mode === "teach") {
+      if (s.cards?.length) return setMode("cards")
+      if (s.quiz) return setMode("quiz")
     }
+    if (mode === "cards" && s.quiz) return setMode("quiz")
+    if (seg + 1 >= steps) {
+      setFinished(true)
+      onDone()
+      return
+    }
+    setSeg(seg + 1)
+    setMode("teach")
+    setAnswered(false)
   }
 
-  const score = swipeScore + quizScore
-  const pct = Math.round((score / total) * 100)
+  const done = finished
+  const pct = total ? Math.round((score / total) * 100) : 0
+  const progress = done ? 1 : (seg + (mode === "teach" ? 0.35 : 0.8)) / steps
 
   return (
     <div className="app">
@@ -56,45 +59,48 @@ export function Lesson({ lesson, onBack, onNext, onDone }: {
           </svg>
           Back
         </button>
-        <span className="bar-title">{label}</span>
-        <span className="bar-count">{phase === "done" ? `${score}/${total}` : ""}</span>
+        <span className="bar-title">{done ? "Result" : lesson.title}</span>
+        <span className="bar-count">{done ? `${score}/${total}` : `${seg + 1}/${steps}`}</span>
       </header>
       <div className="track"><i style={{ width: `${progress * 100}%` }} /></div>
 
       <main className="wrap">
-        {phase === "teach" && (
+        {!done && mode === "teach" && (
           <div className="teach">
-            <h1>{lesson.title}</h1>
-            <p className="hook">{lesson.hook}</p>
-            <Teach blocks={lesson.teach} />
+            {seg === 0 && (
+              <>
+                <h1>{lesson.title}</h1>
+                <p className="hook">{lesson.hook}</p>
+              </>
+            )}
+            <Teach blocks={s.teach} />
           </div>
         )}
 
-        {phase === "swipe" && (
+        {!done && mode === "cards" && s.cards && (
           <SwipeDeck
-            cards={lesson.swipe}
-            onDone={(r) => { setSwipeScore(r); setPhase("quiz") }}
+            key={`c${seg}`}
+            cards={s.cards}
+            onDone={(r) => { setScore((v) => v + r); advance() }}
           />
         )}
 
-        {phase === "quiz" && (
+        {!done && mode === "quiz" && s.quiz && (
           <>
             <QuizCard
-              key={qi}
-              item={lesson.quiz[qi]}
-              onSolved={() => { setQuizScore((s) => s + 1); setAnswered(true) }}
+              key={`q${seg}`}
+              item={s.quiz}
+              onSolved={() => { setScore((v) => v + 1); setAnswered(true) }}
             />
             <div style={{ paddingBottom: 120 }}>
-              <button className="btn ghost" onClick={nextQuestion} disabled={!answered}>
-                {answered
-                  ? (qi + 1 >= lesson.quiz.length ? "Finish" : "Next question")
-                  : "Answer to continue"}
+              <button className="btn ghost" onClick={advance} disabled={!answered}>
+                {answered ? "Keep going" : "Answer to continue"}
               </button>
             </div>
           </>
         )}
 
-        {phase === "done" && (
+        {done && (
           <div className="result">
             <span className="score" style={{ color: pct >= 70 ? "var(--yes)" : "var(--warm)" }}>
               {score}/{total}
@@ -103,7 +109,7 @@ export function Lesson({ lesson, onBack, onNext, onDone }: {
             <p>
               {pct >= 60
                 ? "You can keep this one. Read the takeaway and move on."
-                : "Nothing wrong with going back through the lesson — the cards will still be here."}
+                : "Nothing wrong with going back through it — the cards will still be here."}
             </p>
             <div className="take">
               <span>Takeaway</span>
@@ -117,11 +123,13 @@ export function Lesson({ lesson, onBack, onNext, onDone }: {
         )}
       </main>
 
-      {phase === "teach" && (
+      {!done && mode === "teach" && (
         <div className="dock">
           <div className="dock-in">
-            <button className="btn" onClick={() => setPhase("swipe")}>
-              Start the {lesson.swipe.length}-card test
+            <button className="btn" onClick={advance}>
+              {s.cards?.length
+                ? `Check it — ${s.cards.length} card${s.cards.length > 1 ? "s" : ""}`
+                : s.quiz ? "Check it" : "Continue"}
             </button>
           </div>
         </div>

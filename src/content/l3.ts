@@ -5,78 +5,109 @@ export const l3: Lesson = {
   title: "Where money can actually live",
   hook: "Most people have one place for all their money. That is the mistake.",
   minutes: 5,
-  teach: [
-    { kind: "p", text: "There is no single best place to keep money. There is only a best place **for this particular money**, and that depends on one thing: when you next need it." },
-    { kind: "h", text: "Three buckets, not one pot" },
-    { kind: "p", text: "Split what you have by when you will touch it. **This week**, **this year**, and **beyond three years**. Each bucket wants something different, and a place that is perfect for one is wrong for the others." },
-    { kind: "compare", title: "What each place is actually for", heads: ["Get it out in", "Best used for"], rows: [
-      { label: "Mobile wallet", a: "Seconds", b: "This week's spending" },
-      { label: "Bank savings", a: "Same day", b: "Emergency fund" },
-      { label: "Money market fund", a: "1–3 days", b: "This year's goals" },
-      { label: "SACCO / co-op", a: "Days to weeks", b: "Saving plus loan access" },
-      { label: "Treasury bill", a: "At maturity", b: "Money with a known date" },
-      { label: "Chama / stokvel", a: "Your turn", b: "Discipline and lump sums" },
-      { label: "Land, livestock", a: "Months", b: "Long holds only" },
-    ] },
-    { kind: "h", text: "The trade you cannot escape" },
-    { kind: "p", text: "Speed, safety and return. You get two. A mobile wallet is instant and safe and pays nothing. A treasury bill pays well and is safe and locks your money until the date. Anything promising all three is either misunderstood or lying." },
-    { kind: "stat", value: "3–6 months", label: "Of essential spending is the usual target for an emergency fund. Keep it boring and reachable — this is the one bucket where return does not matter.", tone: "warm" },
-    { kind: "h", text: "A word on chamas, stokvels and susu" },
-    { kind: "p", text: "Rotating savings groups do something no bank does: they make saving **social and unavoidable**. That discipline is worth real money. But your savings are only as safe as the group's bookkeeping and the honesty of whoever holds the pot. Written records and a group account are not bureaucracy, they are the whole protection." },
-    { kind: "callout", text: "A common pattern that works: emergency fund in a savings account, this year's goals in a money market fund, and a chama for the discipline of putting money away every single week.", tone: "yes" },
-  ],
-  swipe: [
-    { claim: "There is one best place to keep all your savings.", answer: false,
-      why: "The right place depends on when you need the money. One pot forces you to compromise on every goal at once." },
-    { claim: "An emergency fund should be invested for the highest return you can find.", answer: false,
-      why: "An emergency fund is judged on how fast you can reach it, not what it earns. Returns are the wrong scoreboard here." },
-    { claim: "A treasury bill usually pays more than a savings account but locks your money until maturity.", answer: true,
-      why: "That is the trade. You are paid extra precisely because you gave up access for a fixed period." },
-    { claim: "Money in a chama is protected by the same rules as money in a bank.", answer: false,
-      why: "It is not. A chama runs on trust and its own records. That can work very well, but the protection is the group's discipline, not regulation." },
-    { claim: "If an investment is instant, safe and high-return, you should put everything in it.", answer: false,
-      why: "You should ask harder questions. Those three together do not exist — one of the claims is wrong, and it is usually 'safe'." },
-    { claim: "Money you need next month should not be in a 364-day treasury bill.", answer: true,
-      why: "You would have to sell early, often at a loss, or miss the payment. Match the tool to the date." },
-  ],
-  quiz: [
-    { q: "You are saving for school fees due in 8 months. Where does that money belong?",
-      options: ["Mobile wallet", "Money market fund or a 182-day bill", "Land", "A long-term share portfolio"],
-      correct: 1,
-      why: [
-        "Safe and instant, but 8 months at 0% hands a real chunk to inflation.",
-        "Correct. The horizon is known and short, so you want something that earns but matures in time.",
-        "Land can take months to sell and the price is not guaranteed. Wrong tool for a fixed deadline.",
-        "Shares can be down on the exact month you need the money. Never match a hard deadline to a volatile asset.",
-      ] },
-    { q: "Which is the real benefit of a chama or stokvel that a bank cannot copy?",
-      options: [
-        "It is regulated and insured",
-        "It guarantees a higher return",
-        "Social pressure makes you actually contribute every week",
-        "It is always more liquid",
+  segments: [
+    {
+      teach: [
+        { kind: "p", text: "There is no single best place to keep money. There is only a best place **for this particular money**, and that depends on one thing: when you next need it." },
+        { kind: "p", text: "Split what you have by when you will touch it: **this week**, **this year**, and **beyond three years**. Each bucket wants something different." },
       ],
-      correct: 2,
-      why: [
-        "It is the opposite — a chama has no regulator standing behind it.",
-        "There is no guaranteed return. What is returned is what the group put in, minus anything lost.",
-        "Correct. The discipline is the product. Turning up because people are expecting you beats any app reminder.",
-        "You usually wait for your turn in the rotation, which makes it less liquid, not more.",
-      ] },
-    { q: "Someone offers 20% a month, withdraw any time, no risk. What is the most likely explanation?",
-      options: [
-        "They found an inefficiency in the market",
-        "It is paying old members with new members' deposits",
-        "They take a large fee elsewhere",
-        "It is a high-risk but genuine fund",
+      cards: [
+        { claim: "There is one best place to keep all your savings.", answer: false,
+          why: "The right place depends on when you need the money. One pot forces you to compromise on every goal at once." },
       ],
-      correct: 1,
-      why: [
-        "20% a month is over 700% a year. No inefficiency of that size survives contact with a real market.",
-        "Correct. Instant access plus guaranteed high returns is the signature of money being recycled, not earned.",
-        "A fee would reduce your return. It cannot create one this large out of nothing.",
-        "A genuine high-risk fund would say you might lose money. 'No risk' is the part that gives it away.",
-      ] },
+    },
+    {
+      teach: [
+        { kind: "compare", title: "What each place is actually for", heads: ["Get it out in", "Best used for"], rows: [
+          { label: "Mobile wallet", a: "Seconds", b: "This week's spending" },
+          { label: "Bank savings", a: "Same day", b: "Emergency fund" },
+          { label: "Money market fund", a: "1–3 days", b: "This year's goals" },
+          { label: "SACCO / co-op", a: "Days to weeks", b: "Saving plus loan access" },
+          { label: "Treasury bill", a: "At maturity", b: "Money with a known date" },
+          { label: "Chama / stokvel", a: "Your turn", b: "Discipline and lump sums" },
+        ] },
+      ],
+      cards: [
+        { claim: "Money you need next month should not be in a 364-day treasury bill.", answer: true,
+          why: "You would have to sell early, often at a loss, or miss the payment. Match the tool to the date." },
+      ],
+      quiz: {
+        q: "You are saving for school fees due in 8 months. Where does that money belong?",
+        options: ["Mobile wallet", "Money market fund or a 182-day bill", "Land", "A long-term share portfolio"],
+        correct: 1,
+        why: [
+          "Safe and instant, but 8 months at 0% hands a real chunk to inflation.",
+          "Correct. The horizon is known and short, so you want something that earns but matures in time.",
+          "Land can take months to sell and the price is not guaranteed. Wrong tool for a fixed deadline.",
+          "Shares can be down on the exact month you need the money. Never match a hard deadline to a volatile asset.",
+        ],
+      },
+    },
+    {
+      teach: [
+        { kind: "h", text: "The trade you cannot escape" },
+        { kind: "p", text: "Speed, safety and return. **You get two.** A mobile wallet is instant and safe and pays nothing. A treasury bill pays well and is safe and locks your money until the date. Anything promising all three is either misunderstood or lying." },
+      ],
+      cards: [
+        { claim: "A treasury bill usually pays more than a savings account but locks your money until maturity.", answer: true,
+          why: "That is the trade. You are paid extra precisely because you gave up access for a fixed period." },
+        { claim: "If an investment is instant, safe and high-return, you should put everything in it.", answer: false,
+          why: "You should ask harder questions. Those three together do not exist — one of the claims is wrong, and it is usually 'safe'." },
+      ],
+      quiz: {
+        q: "Someone offers 20% a month, withdraw any time, no risk. What is the most likely explanation?",
+        options: [
+          "They found an inefficiency in the market",
+          "It is paying old members with new members' deposits",
+          "They take a large fee elsewhere",
+          "It is a high-risk but genuine fund",
+        ],
+        correct: 1,
+        why: [
+          "20% a month is over 700% a year. No inefficiency of that size survives contact with a real market.",
+          "Correct. Instant access plus guaranteed high returns is the signature of money being recycled, not earned.",
+          "A fee would reduce your return. It cannot create one this large out of nothing.",
+          "A genuine high-risk fund would say you might lose money. 'No risk' is the part that gives it away.",
+        ],
+      },
+    },
+    {
+      teach: [
+        { kind: "h", text: "The emergency bucket is different" },
+        { kind: "stat", value: "3–6 months", label: "Of essential spending is the usual target. Keep it boring and reachable — this is the one bucket where **return does not matter**.", tone: "warm" },
+      ],
+      cards: [
+        { claim: "An emergency fund should be invested for the highest return you can find.", answer: false,
+          why: "An emergency fund is judged on how fast you can reach it, not what it earns. Returns are the wrong scoreboard here." },
+      ],
+    },
+    {
+      teach: [
+        { kind: "h", text: "Chamas, stokvels and susu" },
+        { kind: "p", text: "Rotating savings groups do something no bank does: they make saving **social and unavoidable**. That discipline is worth real money." },
+        { kind: "p", text: "But your savings are only as safe as the group's bookkeeping and the honesty of whoever holds the pot. Written records and a group account are not bureaucracy, they are the whole protection." },
+      ],
+      cards: [
+        { claim: "Money in a chama is protected by the same rules as money in a bank.", answer: false,
+          why: "It is not. A chama runs on trust and its own records. That can work very well, but the protection is the group's discipline, not regulation." },
+      ],
+      quiz: {
+        q: "Which is the real benefit of a chama or stokvel that a bank cannot copy?",
+        options: [
+          "It is regulated and insured",
+          "It guarantees a higher return",
+          "Social pressure makes you actually contribute every week",
+          "It is always more liquid",
+        ],
+        correct: 2,
+        why: [
+          "It is the opposite — a chama has no regulator standing behind it.",
+          "There is no guaranteed return. What is returned is what the group put in, minus anything lost.",
+          "Correct. The discipline is the product. Turning up because people are expecting you beats any app reminder.",
+          "You usually wait for your turn in the rotation, which makes it less liquid, not more.",
+        ],
+      },
+    },
   ],
   takeaway: "Sort money by when you need it, then pick the place. Speed, safety, return — you get two, and anyone offering three is selling something.",
 }

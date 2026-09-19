@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react"
 import { LESSONS, PLANNED } from "./content"
+import { countTests } from "./content/types"
 import { Lesson } from "./components/Lesson"
 import "./components/ui.css"
 
@@ -58,7 +59,7 @@ export default function App() {
                 <span className="lrow-t">{l.title}</span>
                 <span className="lrow-d">{l.hook}</span>
               </span>
-              <span className="lrow-m">{l.minutes} min</span>
+              <span className="lrow-m">{l.minutes} min · {countTests(l)} checks</span>
             </button>
           )
         })}
